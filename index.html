@@ -385,37 +385,28 @@
         }
         
         function openBancolombia() {
-            console.log('Abriendo Mi Bancolombia (SuperApp)...');
+            console.log('Abriendo Mi Bancolombia...');
             
-            // Deep links específicos para la nueva app de Bancolombia SuperApp
-            const deepLinks = [
-                'bancolombia://',  // Deep link principal
-                'co.com.bancolombia.personas.superapp://',  // Package específico
-                'superappbancolombia://',  // Alternativo
-            ];
+            // Intent para abrir la app en Android
+            const intentUrl = 'intent://launch#Intent;scheme=bancolombia;package=co.com.bancolombia.personas.superapp;end';
             
-            let attempted = false;
-            deepLinks.forEach((link, index) => {
-                setTimeout(() => {
-                    if (!attempted) {
-                        window.location.href = link;
-                        console.log('Intentando: ' + link);
-                        attempted = true;
-                    }
-                }, index * 500);
-            });
-            
-            // Si no abre en 2.5 segundos, llevar a Play Store
-            setTimeout(() => {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Para Android, usar intent:// que es más confiable
+            if (/android/i.test(navigator.userAgent)) {
+                // Primero intenta con intent
+                window.location.href = intentUrl;
                 
-                if (/android/i.test(userAgent)) {
-                    // Link de la SuperApp nueva
-                    window.open('https://play.google.com/store/apps/details?id=co.com.bancolombia.personas.superapp', '_blank');
-                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // También intenta deep links como backup
+                setTimeout(() => {
+                    window.location.href = 'bancolombia://';
+                }, 300);
+            } else {
+                // Para iOS
+                window.location.href = 'bancolombia://';
+                
+                setTimeout(() => {
                     window.open('https://apps.apple.com/co/app/bancolombia/id412273880', '_blank');
-                }
-            }, 2500);
+                }, 1500);
+            }
         }
         
         function openPSENequi() {
@@ -424,9 +415,9 @@
             // Copia el número automáticamente
             copyToClipboard();
             
-            // Abre la página de recarga Nequi con PSE
+            // Abre la página de recarga Nequi con PSE (link correcto)
             setTimeout(() => {
-                window.open('https://www.nequi.com.co/recargas', '_blank');
+                window.open('https://clientes.nequi.com.co/recargas', '_blank');
             }, 500);
         }
         
