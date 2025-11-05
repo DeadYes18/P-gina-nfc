@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envíame Dinero</title>
+    <title>💸 Envíame Dinero</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>">
     <style>
         * {
             margin: 0;
@@ -23,7 +24,7 @@
         
         .container {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 40px 30px;
             max-width: 420px;
             width: 100%;
@@ -31,44 +32,58 @@
             text-align: center;
         }
         
+        .header {
+            margin-bottom: 30px;
+        }
+        
         .logo {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 70px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         h1 {
             color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
         
         .subtitle {
             color: #666;
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
         }
         
         .phone-display {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
             position: relative;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
         }
         
         .phone-label {
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
         
         .phone-number {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: bold;
             color: white;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
         
         .methods-section {
@@ -76,72 +91,111 @@
         }
         
         .methods-title {
-            font-size: 14px;
+            font-size: 13px;
             color: #888;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
         }
         
         .btn-nequi {
-            background: #FF0083;
+            background: linear-gradient(135deg, #FF0083 0%, #d90070 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(255, 0, 131, 0.3);
         }
         
         .btn-nequi:hover {
-            background: #e6006f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 131, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 131, 0.4);
         }
         
         .btn-bancolombia {
-            background: #FFDD00;
+            background: linear-gradient(135deg, #FFDD00 0%, #ffc800 100%);
             color: #003DA5;
+            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
         }
         
         .btn-bancolombia:hover {
-            background: #ffd000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 221, 0, 0.4);
         }
         
         .btn-pse {
-            background: #00A651;
+            background: linear-gradient(135deg, #00A651 0%, #008f45 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
         }
         
         .btn-pse:hover {
-            background: #008f45;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 166, 81, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
+        }
+
+        .btn-pse-small {
+            background: linear-gradient(135deg, #00A651 0%, #008f45 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+            font-size: 14px;
+            padding: 14px;
+        }
+        
+        .btn-pse-small:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
         }
         
         .btn-copy {
-            background: #f5f5f5;
+            background: #f8f9fa;
             color: #333;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
         .btn-copy:hover {
-            background: #e0e0e0;
-            border-color: #d0d0d0;
+            background: #e9ecef;
+            border-color: #dee2e6;
+            transform: translateY(-2px);
         }
         
         .btn:active {
@@ -152,18 +206,22 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 18px 26px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
             display: none;
-            animation: slideIn 0.3s ease;
+            animation: slideIn 0.4s ease;
             z-index: 1000;
+            font-weight: 600;
+            font-size: 15px;
         }
         
         .notification.show {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         @keyframes slideIn {
@@ -177,44 +235,69 @@
             }
         }
         
-        .icon {
-            font-size: 20px;
-        }
-
         .app-logo {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
         
         .footer {
             margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 12px;
+            padding-top: 22px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 13px;
             color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .divider {
             height: 1px;
             background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-            margin: 25px 0;
+            margin: 28px 0;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .pse-section {
+            margin-top: 20px;
+        }
+
+        .pse-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">💸</div>
-        <h1>Envíame Dinero</h1>
-        <p class="subtitle">Elige tu método de pago preferido</p>
+        <div class="header">
+            <div class="logo">💸</div>
+            <h1>Envíame Dinero</h1>
+            <p class="subtitle">Elige tu método de pago preferido</p>
+        </div>
         
         <div class="phone-display">
-            <div class="phone-label">Número de celular</div>
+            <div class="phone-label">📱 Número de celular</div>
             <div class="phone-number" id="phoneNumber">318 635 9881</div>
         </div>
         
         <div class="methods-section">
-            <div class="methods-title">Métodos de pago</div>
+            <div class="methods-title">
+                💳 Métodos de pago
+            </div>
             
             <button class="btn btn-nequi" onclick="openNequi()">
                 <img src="https://play-lh.googleusercontent.com/cf_dele4P8g_T2rRXz7US2-RCSJwlhw7GW1P3TmRNQdH3YcGPVHIR0E-VQPGJjlxqMUw=s48" alt="Nequi" class="app-logo">
@@ -223,54 +306,63 @@
             
             <button class="btn btn-bancolombia" onclick="openBancolombia()">
                 <img src="https://play-lh.googleusercontent.com/ysKEDBMAw7mdvCO2AG2jp_p9I_KEBGcLcEiZtVvGZ73Ri07TjyMJoDPBzWKJMxkOKu4=s48" alt="Bancolombia" class="app-logo">
-                Abrir Bancolombia
+                Abrir Mi Bancolombia
             </button>
+        </div>
+
+        <div class="pse-section">
+            <div class="methods-title">
+                🔄 Recargar por PSE
+            </div>
             
-            <button class="btn btn-pse" onclick="openPSE()">
-                <img src="https://clientes.nequi.com.co/recargas" alt="PSE" class="app-logo">
-                Pagar con PSE
-            </button>
+            <div class="pse-grid">
+                <button class="btn btn-pse-small" onclick="openPSENequi()">
+                    <img src="https://www.pse.com.co/sites/default/files/2022-03/logo-pse.png" alt="PSE" class="app-logo">
+                    Nequi PSE
+                </button>
+                
+                <button class="btn btn-pse-small" onclick="openPSEBancolombia()">
+                    <img src="https://www.pse.com.co/sites/default/files/2022-03/logo-pse.png" alt="PSE" class="app-logo">
+                    Bancolombia PSE
+                </button>
+            </div>
         </div>
 
         <div class="divider"></div>
         
         <button class="btn btn-copy" onclick="copyToClipboard()">
-            <span class="icon">📋</span>
+            <span style="font-size: 20px;">📋</span>
             Copiar número
         </button>
         
         <div class="footer">
-            📱 Toca la tarjeta NFC para acceder rápidamente
+            <span class="pulse">📡</span>
+            Acerca tu tarjeta NFC
         </div>
     </div>
     
     <div class="notification" id="notification">
-        ✓ Número copiado al portapapeles
+        <span style="font-size: 20px;">✅</span>
+        <span>Número copiado</span>
     </div>
     
     <script>
-        // Tu número de celular
         const PHONE_NUMBER = '3186359881';
         
-        // Formato el número para mostrar
         function formatPhone(phone) {
             return phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
         }
         
-        // Mostrar número formateado
         document.getElementById('phoneNumber').textContent = formatPhone(PHONE_NUMBER);
         
-        // Función para abrir Nequi
         function openNequi() {
-            console.log('Intentando abrir Nequi...');
+            console.log('Abriendo Nequi...');
             
-            // Deep links documentados para Nequi
             const deepLinks = [
-                'nequi://',  // Deep link principal
-                'com.nequi.MobileApp://',  // Alternativo
+                'nequi://',
+                'com.nequi.MobileApp://',
             ];
             
-            // Intenta cada deep link
             let attempted = false;
             deepLinks.forEach((link, index) => {
                 setTimeout(() => {
@@ -281,7 +373,6 @@
                 }, index * 300);
             });
             
-            // Fallback: redirige a tienda después de 2 segundos
             setTimeout(() => {
                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
                 
@@ -293,14 +384,14 @@
             }, 2000);
         }
         
-        // Función para abrir Bancolombia
         function openBancolombia() {
-            console.log('Intentando abrir Bancolombia...');
+            console.log('Abriendo Mi Bancolombia (SuperApp)...');
             
-            // Deep links para Bancolombia Personas
+            // Deep links específicos para la nueva app de Bancolombia SuperApp
             const deepLinks = [
-                'bancolombiamovil://',  // Deep link principal
-                'com.todo1.mobile://',  // Package alternativo
+                'bancolombia://',  // Deep link principal
+                'co.com.bancolombia.personas.superapp://',  // Package específico
+                'superappbancolombia://',  // Alternativo
             ];
             
             let attempted = false;
@@ -308,37 +399,49 @@
                 setTimeout(() => {
                     if (!attempted) {
                         window.location.href = link;
+                        console.log('Intentando: ' + link);
                         attempted = true;
                     }
-                }, index * 300);
+                }, index * 500);
             });
             
-            // Fallback a tiendas
+            // Si no abre en 2.5 segundos, llevar a Play Store
             setTimeout(() => {
                 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
                 
                 if (/android/i.test(userAgent)) {
-                    window.open('https://play.google.com/store/apps/details?id=com.todo1.mobile', '_blank');
+                    // Link de la SuperApp nueva
+                    window.open('https://play.google.com/store/apps/details?id=co.com.bancolombia.personas.superapp', '_blank');
                 } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                     window.open('https://apps.apple.com/co/app/bancolombia/id412273880', '_blank');
                 }
-            }, 2000);
+            }, 2500);
         }
         
-        // Función para abrir PSE
-        function openPSE() {
-            console.log('Abriendo PSE web...');
+        function openPSENequi() {
+            console.log('Abriendo recarga Nequi por PSE...');
             
-            // PSE es principalmente web, pero copiamos el número
+            // Copia el número automáticamente
             copyToClipboard();
             
-            // Abre el portal PSE
+            // Abre la página de recarga Nequi con PSE
             setTimeout(() => {
-                window.open('https://clientes.nequi.com.co/recargas', '_blank');
+                window.open('https://www.nequi.com.co/recargas', '_blank');
             }, 500);
         }
         
-        // Función para copiar al portapapeles
+        function openPSEBancolombia() {
+            console.log('Abriendo recarga Bancolombia por PSE...');
+            
+            // Copia el número automáticamente
+            copyToClipboard();
+            
+            // Abre la página de transferencias/recargas de Bancolombia
+            setTimeout(() => {
+                window.open('https://www.bancolombia.com/personas/productos-servicios/tarjetas/recargas', '_blank');
+            }, 500);
+        }
+        
         function copyToClipboard() {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(PHONE_NUMBER).then(() => {
@@ -351,7 +454,6 @@
             }
         }
         
-        // Método alternativo de copia
         function fallbackCopy() {
             const textArea = document.createElement('textarea');
             textArea.value = PHONE_NUMBER;
@@ -370,354 +472,6 @@
             document.body.removeChild(textArea);
         }
         
-        // Mostrar notificación
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-    </script>
-</body>
-</html>        }
-        
-        h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        
-        .phone-display {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .phone-label {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        
-        .phone-number {
-            font-size: 32px;
-            font-weight: bold;
-            color: white;
-            letter-spacing: 2px;
-        }
-        
-        .methods-section {
-            margin-bottom: 20px;
-        }
-        
-        .methods-title {
-            font-size: 14px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .btn-nequi {
-            background: #FF0083;
-            color: white;
-        }
-        
-        .btn-nequi:hover {
-            background: #e6006f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 131, 0.4);
-        }
-        
-        .btn-bancolombia {
-            background: #FFDD00;
-            color: #003DA5;
-        }
-        
-        .btn-bancolombia:hover {
-            background: #ffd000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 221, 0, 0.4);
-        }
-        
-        .btn-pse {
-            background: #00A651;
-            color: white;
-        }
-        
-        .btn-pse:hover {
-            background: #008f45;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 166, 81, 0.4);
-        }
-        
-        .btn-copy {
-            background: #f5f5f5;
-            color: #333;
-            border: 2px solid #e0e0e0;
-        }
-        
-        .btn-copy:hover {
-            background: #e0e0e0;
-            border-color: #d0d0d0;
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            display: none;
-            animation: slideIn 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .notification.show {
-            display: block;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .icon {
-            font-size: 20px;
-        }
-
-        .app-logo {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-        
-        .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 12px;
-            color: #999;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-            margin: 25px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="logo">💸</div>
-        <h1>Envíame Dinero</h1>
-        <p class="subtitle">Elige tu método de pago preferido</p>
-        
-        <div class="phone-display">
-            <div class="phone-label">Número de celular</div>
-            <div class="phone-number" id="phoneNumber">318 635 9881</div>
-        </div>
-        
-        <div class="methods-section">
-            <div class="methods-title">Métodos de pago</div>
-            
-            <button class="btn btn-nequi" onclick="openNequi()">
-                <img src="https://play-lh.googleusercontent.com/cf_dele4P8g_T2rRXz7US2-RCSJwlhw7GW1P3TmRNQdH3YcGPVHIR0E-VQPGJjlxqMUw=s48" alt="Nequi" class="app-logo">
-                Abrir Nequi
-            </button>
-            
-            <button class="btn btn-bancolombia" onclick="openBancolombia()">
-                <img src="https://play-lh.googleusercontent.com/ysKEDBMAw7mdvCO2AG2jp_p9I_KEBGcLcEiZtVvGZ73Ri07TjyMJoDPBzWKJMxkOKu4=s48" alt="Bancolombia" class="app-logo">
-                Abrir Bancolombia
-            </button>
-            
-            <button class="btn btn-pse" onclick="openPSE()">
-                <img src="https://www.pse.com.co/sites/default/files/2022-03/logo-pse.png" alt="PSE" class="app-logo">
-                Pagar con PSE
-            </button>
-        </div>
-
-        <div class="divider"></div>
-        
-        <button class="btn btn-copy" onclick="copyToClipboard()">
-            <span class="icon">📋</span>
-            Copiar número
-        </button>
-        
-        <div class="footer">
-            📱 Toca la tarjeta NFC para acceder rápidamente
-        </div>
-    </div>
-    
-    <div class="notification" id="notification">
-        ✓ Número copiado al portapapeles
-    </div>
-    
-    <script>
-        // Tu número de celular
-        const PHONE_NUMBER = '3186359881';
-        
-        // Formato el número para mostrar
-        function formatPhone(phone) {
-            return phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
-        }
-        
-        // Mostrar número formateado
-        document.getElementById('phoneNumber').textContent = formatPhone(PHONE_NUMBER);
-        
-        // Función para abrir Nequi
-        function openNequi() {
-            console.log('Intentando abrir Nequi...');
-            
-            // Deep links documentados para Nequi
-            const deepLinks = [
-                'nequi://',  // Deep link principal
-                'com.nequi.MobileApp://',  // Alternativo
-            ];
-            
-            // Intenta cada deep link
-            let attempted = false;
-            deepLinks.forEach((link, index) => {
-                setTimeout(() => {
-                    if (!attempted) {
-                        window.location.href = link;
-                        attempted = true;
-                    }
-                }, index * 300);
-            });
-            
-            // Fallback: redirige a tienda después de 2 segundos
-            setTimeout(() => {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                
-                if (/android/i.test(userAgent)) {
-                    window.open('https://play.google.com/store/apps/details?id=com.nequi.MobileApp', '_blank');
-                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                    window.open('https://apps.apple.com/co/app/nequi-colombia/id1085240467', '_blank');
-                }
-            }, 2000);
-        }
-        
-        // Función para abrir Bancolombia
-        function openBancolombia() {
-            console.log('Intentando abrir Bancolombia...');
-            
-            // Deep links para Bancolombia Personas
-            const deepLinks = [
-                'bancolombiamovil://',  // Deep link principal
-                'com.todo1.mobile://',  // Package alternativo
-            ];
-            
-            let attempted = false;
-            deepLinks.forEach((link, index) => {
-                setTimeout(() => {
-                    if (!attempted) {
-                        window.location.href = link;
-                        attempted = true;
-                    }
-                }, index * 300);
-            });
-            
-            // Fallback a tiendas
-            setTimeout(() => {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                
-                if (/android/i.test(userAgent)) {
-                    window.open('https://play.google.com/store/apps/details?id=com.todo1.mobile', '_blank');
-                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                    window.open('https://apps.apple.com/co/app/bancolombia/id412273880', '_blank');
-                }
-            }, 2000);
-        }
-        
-        // Función para abrir PSE
-        function openPSE() {
-            console.log('Abriendo PSE web...');
-            
-            // PSE es principalmente web, pero copiamos el número
-            copyToClipboard();
-            
-            // Abre el portal PSE
-            setTimeout(() => {
-                window.open('https://www.pse.com.co/persona', '_blank');
-            }, 500);
-        }
-        
-        // Función para copiar al portapapeles
-        function copyToClipboard() {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(PHONE_NUMBER).then(() => {
-                    showNotification();
-                }).catch(err => {
-                    fallbackCopy();
-                });
-            } else {
-                fallbackCopy();
-            }
-        }
-        
-        // Método alternativo de copia
-        function fallbackCopy() {
-            const textArea = document.createElement('textarea');
-            textArea.value = PHONE_NUMBER;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showNotification();
-            } catch (err) {
-                alert('Número: ' + PHONE_NUMBER);
-            }
-            
-            document.body.removeChild(textArea);
-        }
-        
-        // Mostrar notificación
         function showNotification() {
             const notification = document.getElementById('notification');
             notification.classList.add('show');
